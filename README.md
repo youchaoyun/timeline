@@ -46,15 +46,15 @@
 
 ### 竖向时间轴示例
 
-![竖向时间轴示例](image.png)
+![竖向时间轴示例](docs/image.png)
 
 ### 横向时间轴示例
 
-![横向时间轴示例](image-1.png)
+![横向时间轴示例](docs/image-1.png)
 
 ### 时间轴设置示例
 
-![时间轴设置示例](image-2.png)
+![时间轴设置示例](docs/image-2.png)
 
 ## 配置说明
 
@@ -245,7 +245,7 @@ plugin-timeline/
 
 下图为 `Noco 插件交流` 群入口，可用于插件使用交流、问题反馈与功能讨论。
 
-![Noco 插件交流](wxchat.png)
+![Noco 插件交流](docs/wxchat.png)
 
 ### 有巢数智外部文档
 
