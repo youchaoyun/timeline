@@ -1,0 +1,15 @@
+{
+  "name": "@youchaoyun/plugin-timeline",
+  "version": "2.1.0-beta.6",
+  "main": "dist/server/index.js",
+  "dependencies": {},
+  "displayName": "timeline",
+  "displayName.zh-CN": "时间轴",
+  "description": "Provide users with the ability to display data records along a time dimension. Through an intuitive timeline view, it helps users clearly sort out event sequences and track changes in data.",
+  "description.zh-CN": "为用户提供以时间维度展示数据记录的能力。通过直观的时间轴视图，帮助用户清晰地梳理事件脉络、追踪数据变化。",
+  "peerDependencies": {
+    "@nocobase/client": "2.x",
+    "@nocobase/server": "2.x",
+    "@nocobase/test": "2.x"
+  }
+}
