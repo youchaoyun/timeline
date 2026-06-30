@@ -16,6 +16,7 @@ import { getTimelineCoverFieldInterfaces } from './gallery-cover-field-interface
 import {
   getHorizontalItemPlacement,
   getSharedHorizontalSlotSize,
+  getVerticalTimelineRenderMode,
   normalizeTimelineDirection,
   resolveTimelineMode,
 } from './timeline-layout';
@@ -104,6 +105,7 @@ export const TimeLine = observer(({ model }: any) => {
   const resolvedMode = resolveTimelineMode(direction, rawMode);
   const isHorizontal = direction === 'horizontal';
   const verticalTimelineMode = resolveTimelineMode('vertical', rawMode) as 'left' | 'right' | 'alternate';
+  const verticalTimelineRenderMode = getVerticalTimelineRenderMode(rawMode);
 
   const format = timeFormat || 'YYYY-MM-DD';
   const timelineColor = color || '#1890ff';
@@ -661,7 +663,7 @@ export const TimeLine = observer(({ model }: any) => {
           .custom-timeline-wrapper .ant-timeline-item {
             margin-bottom: 20px;
           }`}</style>
-        <Timeline mode={verticalTimelineMode} items={[]} />
+        <Timeline mode={verticalTimelineRenderMode} items={[]} />
       </div>
     );
   }
@@ -682,7 +684,7 @@ export const TimeLine = observer(({ model }: any) => {
   return (
     <div style={timelineWrapperStyle} className="custom-timeline-wrapper">
       <style>{verticalTimelineStyles}</style>
-      <Timeline mode={verticalTimelineMode} items={verticalItems} />
+      <Timeline mode={verticalTimelineRenderMode} items={verticalItems} />
     </div>
   );
 });
