@@ -6,6 +6,7 @@ import {
   normalizeTimelineDirection,
   resolveTimelineMode,
 } from '../timeline-layout';
+import { TimeLineModel } from '../models/TimeLineModel';
 
 describe('timeline horizontal layout helpers', () => {
   it('should default direction to vertical', () => {
@@ -71,5 +72,12 @@ describe('timeline horizontal layout helpers', () => {
     expect(getVerticalTimelineRenderMode('left')).toBe('right');
     expect(getVerticalTimelineRenderMode('right')).toBe('left');
     expect(getVerticalTimelineRenderMode('alternate')).toBe('alternate');
+  });
+
+  it('should require field mapping during timeline block creation', () => {
+    const flow = TimeLineModel.globalFlowRegistry.getFlow('TimeLineSettings');
+    const fieldMappingStep = flow?.getStep('fieldMapping')?.serialize();
+
+    expect(fieldMappingStep?.preset).toBe(true);
   });
 });
