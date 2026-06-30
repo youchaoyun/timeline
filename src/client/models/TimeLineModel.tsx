@@ -386,6 +386,7 @@ TimeLineModel.registerFlow({
   steps: {
     fieldMapping: {
       title: tExpr('Field mapping'),
+      preset: true,
       uiSchema: {
         basicFields: {
           type: 'void',
