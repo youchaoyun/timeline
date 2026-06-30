@@ -7,6 +7,24 @@ export type TimelineModeOption = {
 };
 
 /**
+ * 将业务里的竖向模式转换为 Ant Design Timeline 的渲染模式。
+ * @param mode 设置面板里保存的竖向模式值。
+ */
+export function getVerticalTimelineRenderMode(mode?: string): 'left' | 'right' | 'alternate' {
+  const resolvedMode = resolveTimelineMode('vertical', mode);
+
+  if (resolvedMode === 'left') {
+    return 'right';
+  }
+
+  if (resolvedMode === 'right') {
+    return 'left';
+  }
+
+  return 'alternate';
+}
+
+/**
  * 规范化时间轴方向。
  * @param direction 设置面板里保存的方向值。
  */
