@@ -1,155 +1,114 @@
-# @youchaoyun/plugin-timeline
+# Timeline Plugin
 
-`@youchaoyun/plugin-timeline` 是一个 NocoBase 时间轴区块插件，用于按时间维度展示数据记录，适合项目节点、事件轨迹、进度过程、历史变化等场景。
+<div align="center">
 
-当前版本支持竖向时间轴和横向时间轴两种展示方式，并支持点击节点后打开记录详情弹窗。
+English | [简体中文](./README.zh-CN.md)
 
-## 功能特性
+</div>
 
-- 支持竖向时间轴和横向时间轴切换
-- 支持多种布局模式
-  - 竖向：左侧、右侧、交替
-  - 横向：上方、下方、交替
-- 支持标题、简介、时间、节点图标、标题图片等字段映射
-- 支持节点使用字典颜色或附件图片展示
-- 支持开始时间、结束时间双时间字段展示
-- 支持横向时间轴滚动
-  - 内容宽度不足时可横向滚动
-  - 区块高度不足时可竖向滚动
-- 支持点击节点后通过 `openView` 打开详情弹窗
-- 支持外观配置
-  - 轴线颜色
-  - 轴线宽度
-  - 节点大小
-  - 节点偏移
-  - 标题间距
-  - 时间间距
+`@youchaoyun/plugin-timeline` is a NocoBase timeline block plugin for displaying multi-record data along a time dimension. It works well for project milestones, event history, engineering progress, and other chronological scenarios.
 
-## 适用场景
+The current version supports:
 
-- 项目关键节点展示
-- 工程进度时间线
-- 事件发展过程追踪
-- 历史记录时间顺序展示
-- 带图片的阶段性成果展示
+- vertical and horizontal timeline directions
+- multiple layout modes for different reading patterns
+- field mapping for title, summary, time, node, and title image
+- record detail popups when users click a timeline item
 
-## 区块说明
+## Features
 
-插件注册了一个区块：
+- provides a `Time line` data block
+- supports `Field mapping`
+- supports `Direction` switching
+- supports `Mode` switching
+  - vertical: left, right, alternate
+  - horizontal: top, bottom, alternate
+- supports `Appearance` settings
+  - line color
+  - line width
+  - node size
+  - node offset
+  - title spacing
+  - time spacing
+- supports `Data scope` filtering
+- supports `Default sorting`
+- supports dictionary-color nodes and attachment-image nodes
+- supports start time and end time as dual time fields
+- supports horizontal scrolling for wide timeline content
+- supports opening record details through `openView`
 
-- 区块名称：`Time line`
-- 中文名称：`时间轴`
+## Block Overview
 
-该区块面向多条记录数据进行展示，会按当前数据源查询结果渲染时间轴内容。
+The plugin registers one timeline block for multi-record data:
 
-## 效果预览
+- block name: `Time line`
+- display name: `Timeline`
 
-### 竖向时间轴示例
+Once the block is bound to a collection, it renders the timeline based on the current query result.
 
-![竖向时间轴示例](docs/image.png)
+## Preview
 
-### 横向时间轴示例
+### Vertical Timeline
 
-![横向时间轴示例](docs/image-1.png)
+![Vertical timeline preview](docs/readme-en-preview-vertical.png)
 
-### 时间轴设置示例
+### Horizontal Timeline
 
-![时间轴设置示例](docs/image-2.png)
+![Horizontal timeline preview](docs/readme-en-preview-horizontal.png)
 
-## 配置说明
+### Timeline Settings
 
-时间轴区块主要包含以下配置分组。
+![Timeline settings](docs/readme-en-settings.png)
 
-### 1. 字段映射
+### 1. Field mapping
 
-用于指定时间轴展示所需的字段来源。
+Field mapping defines which collection fields are used by the timeline. Common mappings include:
 
-基础字段：
+- `Title field`
+- `Title image field`
+- `Summary field`
+- `Node field`
+- `Start time field`
+- `End time field`
+- `Time format`
 
-- `标题字段`
-  - 用于显示每个节点的标题
-- `标题图片字段`
-  - 用于显示标题旁边的图片
-  - 当前使用附件字段
-- `简介字段`
-  - 用于显示节点简介内容
-- `节点字段`
-  - 用于显示节点本身
-  - 支持两种形式：
-    - 字典字段：使用字典项颜色作为节点颜色
-    - 附件字段：使用图片作为节点
+Notes:
 
-时间字段：
+- the node field can use either a dictionary field or an attachment field
+- when both start time and end time are configured, the block renders a dual-time layout
+- field mapping supports variable expressions such as `ctx.collection.xxx`
 
-- `开始时间字段`
-  - 用于显示开始时间
-- `结束时间字段`
-  - 用于显示结束时间
-- `时间格式`
-  - 默认格式：`YYYY-MM-DD`
+### 2. Direction
 
-说明：
+Available options:
 
-- 当同时配置开始时间和结束时间时，会按上下两行展示
-- 如果未配置开始/结束时间，但有单时间值，则显示单时间
-- 字段映射支持 `ctx.collection.xxx` 形式的变量表达式
+- `Vertical`
+- `Horizontal`
 
-### 2. 方向
+Notes:
 
-用于控制时间轴整体布局方向。
+- the vertical layout is based on Ant Design Timeline
+- the horizontal layout is implemented with a custom structure inside the plugin
 
-可选值：
+### 3. Mode
 
-- `竖向`
-- `横向`
+Available modes depend on the direction:
 
-说明：
+- vertical: `Left` / `Right` / `Alternate`
+- horizontal: `Top` / `Bottom` / `Alternate`
 
-- 竖向布局基于 Ant Design Timeline 渲染
-- 横向布局为插件自定义横向结构渲染
+### 4. Appearance
 
-### 3. 模式
+Appearance settings control the visual style of the timeline:
 
-模式会随方向变化而变化。
+- `Timeline color`
+- `Line width`
+- `Node padding`
+- `Node size`
+- `Title padding`
+- `Time padding`
 
-竖向模式：
-
-- `左侧`
-- `右侧`
-- `交替`
-
-横向模式：
-
-- `上方`
-- `下方`
-- `交替`
-
-说明：
-
-- 横向 `交替` 模式下，节点内容会按上、下交替分布
-- 插件内部会自动统一横向上下两侧的槽位高度，避免简介长短不一致时节点错位
-
-### 4. 外观
-
-用于控制时间轴的视觉样式。
-
-- `轴线颜色`
-  - 控制时间轴线条颜色
-- `轴线宽度`
-  - 控制轴线粗细
-- `节点大小`
-  - 控制圆点或图片节点尺寸
-- `节点间距`
-  - 控制节点相对轴线的位置偏移
-  - 仅设置节点偏移时，不适用于图片节点
-- `标题间距`
-  - 用于调整标题与轴线之间的上下距离
-- `时间间距`
-  - 用于调整时间与轴线之间的上下距离
-- `恢复默认`
-  - 一键恢复默认外观参数
-
-默认外观参数：
+Default appearance values:
 
 ```ts
 {
@@ -162,93 +121,41 @@
 }
 ```
 
-## 横向时间轴说明
+## Click Interaction
 
-横向时间轴不是直接使用 Ant Design `Timeline` 的横向能力实现的，而是插件内部自定义的横向结构。
+The plugin registers a timeline item click event:
 
-当前横向时间轴具备以下表现：
+- event name: `itemClick`
 
-- 可设置为 `上方 / 下方 / 交替`
-- 轴线长度会跟随实际节点数量收口，不会无意义延长
-- 整条时间轴会在区块中水平居中
-- 当区块高度较大时，时间轴会在竖向方向居中
-- 当区块高度不足时，区块会出现竖向滚动条
-- 当内容宽度超出区块时，区块会出现横向滚动条
+By default, the built-in `popupSettings` flow uses `openView` to open the current record in a popup.
 
-## 节点点击交互
+## Mock Preview Without Data Source
 
-插件注册了节点点击事件：
+If the block has not been bound to a data source yet, the plugin uses built-in mock data so the timeline can still be previewed in design mode.
 
-- 事件名：`itemClick`
+## Peer Dependencies
 
-默认内置了一个 `popupSettings` 流程，并在点击节点时使用 `openView` 打开详情弹窗。
-
-说明：
-
-- 点击时间轴条目时，会根据当前记录主键生成 `filterByTk`
-- 弹窗默认关闭路由跳转，避免二次进入时无法重新触发弹窗事件
-
-## 无数据源时的预览
-
-如果区块尚未配置数据源，插件会使用内置假数据进行展示，方便在配置态下预览样式。
-
-## 依赖要求
-
-插件声明了以下 `peerDependencies`：
+The plugin declares the following `peerDependencies`:
 
 - `@nocobase/client: 2.x`
 - `@nocobase/server: 2.x`
 - `@nocobase/test: 2.x`
 
-## 目录结构
+## Related Documentation
 
-```text
-plugin-timeline/
-├─ src/
-│  ├─ client/
-│  │  ├─ TimeLine.tsx
-│  │  ├─ timeline-layout.ts
-│  │  ├─ models/
-│  │  │  └─ TimeLineModel.tsx
-│  │  └─ __tests__/
-│  └─ locale/
-├─ package.json
-└─ README.md
-```
+- Chinese README: [`README.zh-CN.md`](./README.zh-CN.md)
+- External documentation: [https://docs.youchaoyun.com/cn/infrastructure/nocobase_plugin_extension/](https://docs.youchaoyun.com/cn/infrastructure/nocobase_plugin_extension/)
 
-## 已实现能力总结
+## Noco Plugin Community
 
-当前 README 对应的实现能力包括：
+Welcome to join the Noco plugin community to discuss NocoBase plugin development, plugin usage, and enterprise extension practices.
 
-- 时间轴区块注册
-- 字段映射
-- 节点颜色/图片展示
-- 标题图片展示
-- 竖向布局
-- 横向布局
-- 横向上方/下方/交替模式
-- 横向滚动与竖向滚动
-- 横向内容对齐与共享高度修正
-- 点击节点弹窗
+![Noco plugin discussion group](docs/wxchat.png)
 
-## 注意事项
+If the QR code has expired, please visit the "More Plugins" page below to get the latest community entry.
 
-- 节点字段如果使用字典字段，节点展示颜色来自匹配字典项的 `color`
-- 节点字段如果使用附件字段，节点展示为图片
-- 标题图片字段当前基于附件字段读取首张图片
-- 标题间距、时间间距主要用于调整轴线附近的视觉偏移
-- 横向时间轴是自定义布局，不是直接复用 Ant Design `Timeline` 的横向实现
+## More Plugins
 
-## 交流与文档
+Youchaoyun continues to build NocoBase enterprise plugins and extension capabilities. See more here:
 
-### Noco 插件交流
-
-下图为 `Noco 插件交流` 群入口，可用于插件使用交流、问题反馈与功能讨论。
-
-![Noco 插件交流](docs/wxchat.png)
-
-### 有巢数智外部文档
-
-以下地址为 `有巢数智` 的外部文档入口，可用于查看相关产品与平台说明文档：
-
-https://docs.youchaoyun.com/cn/infrastructure/
+[More NocoBase plugin extensions](https://docs.youchaoyun.com/cn/infrastructure/nocobase_plugin_extension/)
