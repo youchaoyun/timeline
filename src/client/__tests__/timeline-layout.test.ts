@@ -2,6 +2,7 @@ import {
   getHorizontalItemPlacement,
   getSharedHorizontalSlotSize,
   getTimelineModeOptions,
+  getVerticalTimelineRenderMode,
   normalizeTimelineDirection,
   resolveTimelineMode,
 } from '../timeline-layout';
@@ -63,5 +64,12 @@ describe('timeline horizontal layout helpers', () => {
     expect(getSharedHorizontalSlotSize([0, 28, 64], 36)).toBe(64);
     expect(getSharedHorizontalSlotSize([12, 20], 36)).toBe(36);
     expect(getSharedHorizontalSlotSize([], 36)).toBe(36);
+  });
+
+  it('should map vertical business modes to the expected antd render modes', () => {
+    expect(getVerticalTimelineRenderMode(undefined)).toBe('right');
+    expect(getVerticalTimelineRenderMode('left')).toBe('right');
+    expect(getVerticalTimelineRenderMode('right')).toBe('left');
+    expect(getVerticalTimelineRenderMode('alternate')).toBe('alternate');
   });
 });
