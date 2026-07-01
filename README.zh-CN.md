@@ -133,6 +133,23 @@
 
 如果区块尚未配置数据源，插件会使用内置假数据进行展示，方便在配置态下预览样式。
 
+## 扩展能力
+
+插件默认仅将 `attachment` 作为 `标题图片字段` 可选字段接口。
+
+如果其他插件需要扩展可作为标题图片字段的接口类型，可通过客户端插件实例调用：
+
+```typescript
+// client/plugin.tsx  multipleEntryModesAttachment为想要注册的类型
+   const timelinePlugin = this.app.pm.get<any>('@youchaoyun/plugin-timeline');
+   timelinePlugin?.registerTimelineCoverFieldInterfaces?.(['multipleEntryModesAttachment']);
+```
+
+说明：
+
+- 内部会自动去重
+- 已注册接口会参与 `标题图片` 字段选择范围
+
 ## 依赖要求
 
 插件声明了以下 `peerDependencies`：

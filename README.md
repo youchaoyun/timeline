@@ -133,6 +133,23 @@ By default, the built-in `popupSettings` flow uses `openView` to open the curren
 
 If the block has not been bound to a data source yet, the plugin uses built-in mock data so the timeline can still be previewed in design mode.
 
+## Extension Capability
+
+By default, the plugin only exposes `attachment` as an available interface type for the `Title image field`.
+
+If another plugin needs to extend the available interface types that can be selected as the title image field, it can call the client-side plugin instance like this:
+
+```typescript
+// client/plugin.tsx  multipleEntryModesAttachment is the interface type to register
+const timelinePlugin = this.app.pm.get<any>('@youchaoyun/plugin-timeline');
+timelinePlugin?.registerTimelineCoverFieldInterfaces?.(['multipleEntryModesAttachment']);
+```
+
+Notes:
+
+- duplicate interface registrations are removed automatically
+- registered interfaces will be included in the selectable range for the `Title image` field
+
 ## Peer Dependencies
 
 The plugin declares the following `peerDependencies`:
